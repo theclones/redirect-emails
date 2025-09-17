@@ -1,0 +1,19 @@
+version: '3.8'
+
+services:
+  web:
+    build: .
+    ports:
+      - "8080:80"
+    volumes:
+      - ./:/var/www/html
+      - ./cache:/var/cache/campaign
+    environment:
+      - PHP_FPM_USER=nginx
+      - PHP_FPM_GROUP=nginx
+      - REDIS_URL=${REDIS_URL}
+      - DEFAULT_CAMPAIGN_ID=${DEFAULT_CAMPAIGN_ID}
+      - EMAIL_DASHBOARD_URL=${EMAIL_DASHBOARD_URL}
+    restart: unless-stopped
+
+

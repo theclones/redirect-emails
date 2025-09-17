@@ -1,0 +1,87 @@
+.accordion-sub-container li.customize-control {
+	margin-bottom : 10px !important;
+}
+
+.accordion-section-content li.widget-rendered {
+	margin-bottom: 10px;
+}
+
+input[type="textbox"], select {
+	box-shadow: 0 0 0 transparent;
+    border-radius: 4px;
+    border: 1px solid #7e8993;
+    background-color: #fff;
+    color: #32373c;
+}
+
+input[type="textbox"] {
+    height: 30px;
+    width: 100%;
+    padding-left: 10px;
+}
+
+#accordion-section-lawyer_consultant_buy_settings h3.accordion-section-title {
+	color: #bb4242;
+}
+
+#accordion-section-lawyer_consultant_buy .accordion-section-title a {
+    padding: 0 5px !important;
+}
+
+.customizer-custom-info-text {
+	background: #fff;
+    padding: 15px;
+    word-spacing: 2px;
+}
+
+.customizer-custom-title-info-text {
+	font-weight: 400;
+    background: #3582c4;
+    color: #fff;
+    padding: 5px 0;
+    text-align: center;
+    margin: 20px 0 15px 0;
+    letter-spacing: 3px;
+}
+
+.customize-control-radio-image .image.ui-buttonset label {
+    margin-top: 15px;
+}
+
+.customize-control-radio-image .image.ui-buttonset label {
+    display: inline-block;
+    margin-right: 15px;
+    margin-bottom: 5px;
+}
+
+#input_lawyer_consultant_header_menu_style .ui-button-text img {
+    max-width: 250px !important;
+    height: auto;
+    display: inline-block !important;
+}
+
+#input_lawyer_consultant_header_menu_style img {
+    max-width: 250px  !important;
+    margin-bottom: 50px !important;
+}
+
+#input_lawyer_consultant_highlight_area_columns label img {
+    max-width: 85px !important;
+    margin-right: 15px !important;
+    height: auto;
+}
+
+span.new {
+    background: #2271b1;
+    color: #fff;
+    padding: 2px 10px;
+    font-size: 10px;
+    margin-left: 10px;
+    border-radius: 10px;
+}
+
+#customize-controls img {
+    max-width: 100%;
+    width: 50px;
+    padding-right: 10px;
+}
