@@ -147,6 +147,35 @@ class CampaignHelper
     }
 
     /**
+     * Decrypt non-integer values using the specified algorithm
+     */
+    private function decryptValue($encrypted)
+    {
+        if (empty($encrypted) || is_numeric($encrypted)) {
+            return null;
+        }
+
+        try {
+            // Replace URL-safe characters back to base64
+            $base64 = str_replace(['-', '_', '~'], ['+', '/', '='], $encrypted);
+
+            // Decode base64
+            $decoded = base64_decode($base64, true);
+            if ($decoded === false) {
+                return null;
+            }
+
+            // Reverse the string
+            $result = strrev($decoded);
+
+            return $result;
+        } catch (Exception $e) {
+            error_log("[CampaignHelper] Decryption failed: " . $e->getMessage());
+            return null;
+        }
+    }
+
+    /**
      * Extract campaign ID from URL path or GET parameter
      * Priority: cid-{ID} in path > ?cid={ID} parameter
      */
@@ -159,8 +188,17 @@ class CampaignHelper
         }
 
         // Check GET parameter ?cid={ID}
-        if (isset($_GET['cid']) && is_numeric($_GET['cid'])) {
-            return intval($_GET['cid']);
+        if (isset($_GET['cid'])) {
+            // If it's numeric, return as integer
+            if (is_numeric($_GET['cid'])) {
+                return intval($_GET['cid']);
+            }
+
+            // If not numeric, try to decrypt it
+            $decryptedValue = $this->decryptValue($_GET['cid']);
+            if ($decryptedValue !== null && is_numeric($decryptedValue)) {
+                return intval($decryptedValue);
+            }
         }
 
         // Fallback to default from environment
@@ -190,6 +228,18 @@ class CampaignHelper
 
         // Check GET parameter ?eid={ID}
         if (isset($_GET['eid'])) {
+            // If it's numeric, return as is
+            if (is_numeric($_GET['eid'])) {
+                return $_GET['eid'];
+            }
+
+            // If not numeric, try to decrypt it
+            $decryptedValue = $this->decryptValue($_GET['eid']);
+            if ($decryptedValue !== null) {
+                return $decryptedValue;
+            }
+
+            // If decryption fails, return original value
             return $_GET['eid'];
         }
 
