@@ -63,7 +63,6 @@ class CampaignHelper
                     error_log("Failed to select Redis database {$database}");
                 }
 
-                error_log("Successfully connected to Redis at {$host}:{$port}");
             } else {
                 // Fallback to old method for backward compatibility
                 $host = $_ENV['REDIS_HOST'] ?? 'redis';
@@ -139,13 +138,11 @@ class CampaignHelper
         // Load campaign data if campaign ID exists
         if ($GLOBALS['campaign_id']) {
             $GLOBALS['campaign_data'] = $this->getCampaignData($GLOBALS['campaign_id']);
-            error_log("[CampaignHelper] Initialized global campaign_id: {$GLOBALS['campaign_id']}");
         }
 
         // Load email data if email ID exists
         if ($GLOBALS['email_id']) {
             $GLOBALS['email_data'] = $this->getEmailData($GLOBALS['email_id']);
-            error_log("[CampaignHelper] Initialized global email_id: {$GLOBALS['email_id']}");
         }
     }
 
@@ -221,7 +218,6 @@ class CampaignHelper
             if ($cached) {
                 $data = json_decode($cached, true);
                 if ($data) {
-                    error_log("[CampaignHelper] Campaign {$campaignId} loaded from Redis cache");
                     return $data;
                 }
             }
@@ -252,7 +248,6 @@ class CampaignHelper
                 if ($this->redis) {
                     $this->redis->setex($cache_key, $this->cache_ttl, json_encode($responseData['data']));
                 }
-                error_log("[CampaignHelper] Campaign {$campaignId} fetched from API and cached");
                 return $responseData['data'];
             }
         }
@@ -297,7 +292,6 @@ class CampaignHelper
         curl_close($curl);
 
         if ($httpCode == 200 || $httpCode == 201) {
-            error_log("[CampaignHelper] CLICK action tracked for campaign {$campaignId}");
             return true;
         } else {
             error_log("[CampaignHelper] Failed to track CLICK action: HTTP {$httpCode}");
@@ -355,6 +349,25 @@ class CampaignHelper
     }
 
     /**
+     * Enhanced variant selection for user with better distribution
+     */
+    public function selectVariantForUser($userId)
+    {
+        if (empty($this->variants)) {
+            return null;
+        }
+
+        // Use a combination of user ID and current time for better randomization
+        $seed = crc32($userId . microtime(true));
+        mt_srand($seed);
+
+        // Get a random index
+        $randomIndex = mt_rand(0, count($this->variants) - 1);
+
+        return $this->variants[$randomIndex];
+    }
+
+    /**
      * Get or create user assignment for variant
      */
     public function getVariantForUser($userId)
@@ -364,23 +377,37 @@ class CampaignHelper
         }
 
         $cache_key = "user:variant:{$userId}";
+        $clientIp = $this->getClientIp();
+
+        // Check for force variant parameter (for testing)
+        if (isset($_GET['force_variant']) && in_array($_GET['force_variant'], $this->variants)) {
+            $forced_variant = $_GET['force_variant'];
+            // Cache the forced assignment
+            if ($this->redis) {
+                $this->redis->setex($cache_key, 86400 * 30, $forced_variant);
+            }
+            error_log("[CampaignHelper] FORCED variant '{$forced_variant}' for IP {$clientIp} (userId: {$userId})");
+            return $forced_variant;
+        }
 
         // Check if user already has assigned variant
         if ($this->redis) {
             $cached_variant = $this->redis->get($cache_key);
             if ($cached_variant && in_array($cached_variant, $this->variants)) {
+                error_log("[CampaignHelper] CACHED variant '{$cached_variant}' for IP {$clientIp} (userId: {$userId})");
                 return $cached_variant;
             }
         }
 
-        // Assign new variant
-        $selected_variant = $this->selectRandomVariant();
+        // Assign new variant using enhanced selection
+        $selected_variant = $this->selectVariantForUser($userId);
 
         // Cache the assignment (long TTL since it shouldn't change)
         if ($this->redis && $selected_variant) {
             $this->redis->setex($cache_key, 86400 * 30, $selected_variant); // 30 days
         }
 
+        error_log("[CampaignHelper] NEW variant '{$selected_variant}' assigned to IP {$clientIp} (userId: {$userId})");
         return $selected_variant;
     }
 
@@ -535,7 +562,6 @@ class CampaignHelper
             if ($cached) {
                 $data = json_decode($cached, true);
                 if ($data) {
-                    error_log("[CampaignHelper] Email {$emailId} loaded from Redis cache");
                     return $data;
                 }
             }
@@ -566,7 +592,6 @@ class CampaignHelper
                 if ($this->redis) {
                     $this->redis->setex($cache_key, 3600, json_encode($responseData['data'])); // 1 hour cache for emails
                 }
-                error_log("[CampaignHelper] Email {$emailId} fetched from API and cached");
                 return $responseData['data'];
             }
         }
@@ -677,7 +702,6 @@ class CampaignHelper
             $redirectUrl .= '?' . http_build_query($queryParams);
         }
 
-        error_log("[CampaignHelper] redirectToCampaignDomain: Redirecting to {$redirectUrl}");
 
         // Perform 302 redirect
         header("Location: {$redirectUrl}", true, 302);
@@ -723,7 +747,6 @@ class CampaignHelper
             // Record the assignment
             $this->recordVariantAssignment($userId, $assignedVariant, $campaignId);
 
-            error_log("[CampaignHelper] redirectToRandomVariant: Assigned variant '{$assignedVariant}' to user {$userId}");
         }
 
         // Create X-Accel-Redirect header
@@ -731,7 +754,6 @@ class CampaignHelper
         $xAccelRedirect = $this->createXAccelRedirect($assignedVariant, $requestPath);
 
         if ($xAccelRedirect) {
-            error_log("[CampaignHelper] redirectToRandomVariant: X-Accel-Redirect to: {$xAccelRedirect}");
             header("X-Accel-Redirect: {$xAccelRedirect}");
             exit();
         } else {
