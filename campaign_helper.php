@@ -210,7 +210,7 @@ class CampaignHelper
             return null;
         }
 
-        $cache_key = "campaign:data:{$campaignId}";
+        $cache_key = "campaign:{$campaignId}";
 
         // Try Redis first unless cache is disabled
         if (!$skipCache && $this->redis) {
@@ -244,11 +244,25 @@ class CampaignHelper
         if ($httpCode == 200 && !empty($response)) {
             $responseData = json_decode($response, true);
             if (isset($responseData['data'])) {
-                // Cache in Redis with 5-minute expiration
+                $campaignData = $responseData['data'];
+
+                // Store in Redis using emails-panel format
                 if ($this->redis) {
-                    $this->redis->setex($cache_key, $this->cache_ttl, json_encode($responseData['data']));
+                    // Store main campaign data
+                    $this->redis->setex($cache_key, $this->cache_ttl, json_encode($campaignData));
+
+                    // Store additional quick-access keys like emails-panel does
+                    if (isset($campaignData['campaignType'])) {
+                        $this->redis->setex("campaign:{$campaignId}:type", $this->cache_ttl, $campaignData['campaignType']);
+                    }
+                    if (isset($campaignData['landingPageStreamId'])) {
+                        $this->redis->setex("campaign:{$campaignId}:landing_stream", $this->cache_ttl, $campaignData['landingPageStreamId']);
+                    }
+                    if (isset($campaignData['redirectStreamId'])) {
+                        $this->redis->setex("campaign:{$campaignId}:redirect_stream", $this->cache_ttl, $campaignData['redirectStreamId']);
+                    }
                 }
-                return $responseData['data'];
+                return $campaignData;
             }
         }
 
@@ -473,16 +487,34 @@ class CampaignHelper
     }
 
     /**
-     * Store campaign data in Redis (for external use)
+     * Store campaign data in Redis - exactly matches emails-panel RedisService format
      */
-    public function storeCampaignData($campaignId, $data)
+    public function storeCampaignData($campaignId, $campaignData, $ttl = null)
     {
         if (!$this->redis || !$campaignId) {
             return false;
         }
 
-        $cache_key = "campaign:data:{$campaignId}";
-        return $this->redis->setex($cache_key, $this->cache_ttl, json_encode($data));
+        $ttl = $ttl ?: $this->cache_ttl;
+
+        // Store complete campaign data using emails-panel key format
+        $key = "campaign:{$campaignId}";
+        $result = $this->redis->setex($key, $ttl, json_encode($campaignData));
+
+        // Store campaign type for quick access (emails-panel format)
+        if (isset($campaignData['campaignType'])) {
+            $this->redis->setex("campaign:{$campaignId}:type", $ttl, $campaignData['campaignType']);
+        }
+
+        // Store stream IDs for quick access (emails-panel format)
+        if (isset($campaignData['landingPageStreamId'])) {
+            $this->redis->setex("campaign:{$campaignId}:landing_stream", $ttl, $campaignData['landingPageStreamId']);
+        }
+        if (isset($campaignData['redirectStreamId'])) {
+            $this->redis->setex("campaign:{$campaignId}:redirect_stream", $ttl, $campaignData['redirectStreamId']);
+        }
+
+        return $result;
     }
 
     /**
@@ -540,7 +572,7 @@ class CampaignHelper
     }
 
     /**
-     * Fetch email data with Redis caching
+     * Fetch email data with Redis caching - matches emails-panel format exactly
      */
     public function getEmailData($emailId = null, $skipCache = false)
     {
@@ -552,13 +584,9 @@ class CampaignHelper
             return null;
         }
 
-        // Check if it's numeric (ID) or email string
-        $isNumeric = is_numeric($emailId);
-        $cache_key = $isNumeric ? "email:id:{$emailId}" : "email:data:{$emailId}";
-
-        // Try Redis first unless cache is disabled
+        // Check cache first by email ID
         if (!$skipCache && $this->redis) {
-            $cached = $this->redis->get($cache_key);
+            $cached = $this->redis->get("email_id:{$emailId}");
             if ($cached) {
                 $data = json_decode($cached, true);
                 if ($data) {
@@ -567,10 +595,8 @@ class CampaignHelper
             }
         }
 
-        // Build API URL with appropriate parameter
-        $paramName = $isNumeric ? 'id' : 'email';
-        $paramValue = urlencode($emailId);
-        $apiUrl = "{$this->email_dashboard_url}/api/public/emails?{$paramName}={$paramValue}";
+        // Cache miss - fetch from API using numeric ID
+        $apiUrl = "{$this->email_dashboard_url}/api/public/emails?id={$emailId}";
 
         $curl = curl_init();
         curl_setopt($curl, CURLOPT_URL, $apiUrl);
@@ -587,18 +613,78 @@ class CampaignHelper
 
         if ($httpCode == 200 && !empty($response)) {
             $responseData = json_decode($response, true);
-            if (isset($responseData['data'])) {
-                // Cache in Redis
+            if (isset($responseData['data']) && isset($responseData['data']['email'])) {
+                $emailData = $responseData['data'];
+                $emailAddress = strtolower($emailData['email']);
+
+                // Store in Redis in BOTH formats
                 if ($this->redis) {
-                    $this->redis->setex($cache_key, 3600, json_encode($responseData['data'])); // 1 hour cache for emails
+                    // Store by email ID (for redirect-emails lookup)
+                    $this->redis->setex("email_id:{$emailId}", 3600, json_encode($emailData));
+
+                    // Store by email address (emails-panel format)
+                    $this->redis->setex("email:{$emailAddress}", 3600, json_encode($emailData));
+
+                    // Store additional quick-access keys like emails-panel does
+                    if (isset($emailData['provider'])) {
+                        $this->redis->setex("email:{$emailAddress}:provider", 3600, $emailData['provider']['name']);
+                    }
+                    if (isset($emailData['country'])) {
+                        $this->redis->setex("email:{$emailAddress}:country", 3600, $emailData['country']['code']);
+                    }
                 }
-                return $responseData['data'];
+
+                return $emailData;
             }
         }
 
-        error_log("[CampaignHelper] Failed to fetch email data for {$emailId}");
+        error_log("[CampaignHelper] Failed to fetch email data for ID {$emailId}");
         return null;
     }
+
+    /**
+     * Store email data in Redis - exactly matches emails-panel RedisService format
+     */
+    public function storeEmailData($email, $emailData, $ttl = 3600) {
+        if (!$this->redis || !$email) {
+            return false;
+        }
+
+        $emailLower = strtolower($email);
+
+        // Store complete email data (emails-panel format)
+        $key = "email:{$emailLower}";
+        $result = $this->redis->setex($key, $ttl, json_encode($emailData));
+
+        // Store provider info for quick access (emails-panel format)
+        if (isset($emailData['provider'])) {
+            $this->redis->setex("email:{$emailLower}:provider", $ttl, $emailData['provider']['name']);
+        }
+
+        // Store country code for quick access (emails-panel format)
+        if (isset($emailData['country'])) {
+            $this->redis->setex("email:{$emailLower}:country", $ttl, $emailData['country']['code']);
+        }
+
+        return $result;
+    }
+
+    /**
+     * Get email data by email address - exactly matches emails-panel RedisService format
+     */
+    public function getEmailDataByAddress($email) {
+        if (!$this->redis || !$email) {
+            return null;
+        }
+
+        $key = "email:" . strtolower($email);
+        $cached = $this->redis->get($key);
+        if ($cached) {
+            return json_decode($cached, true);
+        }
+        return null;
+    }
+
 
     /**
      * Get redirect stream ID from campaign data for Adspect
