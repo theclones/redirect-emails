@@ -1,0 +1,71 @@
+.banner-section .banner-content .short-text,
+.section-small-text {
+  font-family: 'Dancing Script', cursive;
+}
+.banner-section .banner-content h1,
+.banner-section .banner-content p,
+.banner-section .banner-content .wp-block-buttons a,
+.section-heading{
+  font-family: 'Rosario', sans-serif;
+}
+.banner-section {
+  border-radius: 50px;
+}
+.banner-section .banner-content{
+  left: 5%;
+  right: 47%;
+}
+.banner-section .banner-content h1,
+.banner-section .banner-content p{
+  margin: 0;
+}
+.banner-section .wp-block-buttons .wp-block-button__link:hover{
+  background: #000 !important; 
+}
+.banner-section .search-form{
+  position: absolute;
+  right: 0;
+}
+.banner-section .banner-content .short-text:after{
+  position: absolute;
+  background: linear-gradient(to left,#fff 0,#fff 16%,#0000 15%,#0000 16px,#fff 20%,#fff 43%, #0000 43%,#0000 46%, #fff 43%,#fff 100%);
+  bottom: 20px;
+  left: 15%;
+  content: "";
+  width: 12%;
+  height: 2px;
+  display: block;
+  border-radius: 30px;
+  margin: -10px;
+}
+.banner-section .wp-block-buttons{
+  margin-top: 20px;
+}
+.banner-section .search-form h2{
+  display: none;
+}
+.featured-section{
+  margin-top: 25px;
+}
+.featured-section .section-small-text:before{
+  position: absolute;
+  background: linear-gradient(to right,#2264C6 0,#2264C6 16%,#fff 15%,#fff 20px,#2264C6 20%,#2264C6 43%, #fff 43%,#fff 46%, #2264C6 43%,#2264C6 100%);
+  left: 29%;
+  content: "";
+  width: 12%;
+  height: 3px;
+  display: block;
+  border-radius: 30px;
+  margin: 16px auto;
+}
+.featured-section .section-small-text:after{
+  position: absolute;
+  background: linear-gradient(to left,#2264C6 0,#2264C6 16%,#fff 15%,#fff 20px,#2264C6 20%,#2264C6 43%, #fff 43%,#fff 46%, #2264C6 43%,#2264C6 100%);
+  right: 29%;
+  content: "";
+  width: 12%;
+  height: 3px;
+  display: block;
+  border-radius: 30px;
+  margin: -10px auto;
+}
