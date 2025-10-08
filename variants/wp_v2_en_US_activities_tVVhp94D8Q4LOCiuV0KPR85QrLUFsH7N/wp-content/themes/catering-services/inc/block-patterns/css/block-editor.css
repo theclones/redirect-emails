@@ -1,0 +1,117 @@
+/*banner-section*/
+.catering-services-banner-section .banner-section-heading,
+.catering-services-banner-section .banner-section-buttton div ,
+.catering-services-product-section .column1-button div,
+.catering-services-product-section .column1-heading,
+.product-section-product .wc-block-grid__product .wc-block-grid__product-title{
+  font-family: 'Bree Serif', serif;
+  letter-spacing: 1px;
+}
+.catering-services-banner-section .banner-section-text,
+.catering-services-product-section .column1-text,
+.product-section-product .wc-block-grid__product-price.price{
+  font-family: 'Roboto', sans-serif;
+}
+.catering-services-banner-section{
+  width: auto;
+  height: auto;
+}
+.catering-services-banner-section:before {
+    content: '';
+    width: 100%;
+    height: 24px;
+    background-image: url(../images/slider-bg.png);
+    background-size: cover;
+    background-repeat: no-repeat;
+    position: absolute;
+    z-index: 99;
+    bottom: -1px;
+  }
+.catering-services-banner-section .banner-section-column1 h1{
+    line-height: 1.2;
+    margin-bottom: 0px;
+}
+.banner-section-column1 .banner-section-text{
+    margin-top: 0px;
+    margin-bottom: 0px;
+}
+.catering-services-banner-section .banner-section-buttton div ,.catering-services-product-section .column1-button div.wp-element-button{
+    background-image: linear-gradient(90deg, #fb6d21 0%, #eb343b 100%);
+    border: 2px solid #eb343b;
+}
+.catering-services-banner-section .banner-section-buttton div:hover , .catering-services-product-section .column1-button div.wp-element-button:hover{
+  border: 2px solid #eb343b;
+  background: transparent;
+}
+/*product section*/
+.catering-services-product-section .product-section-column1 img{
+    border-radius: 30px;
+}
+.catering-services-product-section .product-section-column1 h2{
+  margin-bottom: 0px !important;
+}
+.catering-services-product-section .wp-block-cover .has-background-dim:not([class*=-background-color]) {
+    background: none;
+}
+.catering-services-product-section .product-section-product .wc-block-grid__products li{
+    border-radius: 15px;
+    filter: drop-shadow(0 0 4px rgba(0,0,0,0.16));
+    background-color: #ffffff;
+    padding: 15px;
+    margin: 13px 14px !important;
+    max-width: 45%;
+}
+.product-section-column2 .wc-block-grid__products a.wc-block-grid__product-link img{
+    width: 100% !important;
+}
+
+.product-section-product .wc-block-grid__product .wc-block-grid__product-title{
+    font-size: 26px;
+    color: #000;
+    text-align: start;
+    margin-top: 30px;
+    font-weight: 500;
+}
+.wc-block-grid__product a.wc-block-grid__product-link{
+    text-decoration: none !important;
+}
+.product-section-product .wc-block-grid__product-price.price{
+    display: inline-block;
+    margin-bottom: 0px;
+    float:left;
+    color: #eb353c;
+    font-weight: 500;
+    font-size: 18px;
+}
+.product-section-product .wc-block-grid__product-rating{
+    display: inline-block;
+    margin-bottom: 0px;
+    color: #feaf18;
+    position: static;
+    transform: translate(0%);
+}
+.product-section-product a.wp-block-button__link.add_to_cart_button {
+    background: url(../images/cart-icon.png) no-repeat scroll 17px #eb353c !important;
+    text-indent: -9999px;
+    border: solid 4px #fff;
+    border-radius: 50%;
+    cursor: pointer;
+    position: absolute;
+    right: 5%;
+    left: 75%;
+    bottom: 40px;
+    height: 3.5em;
+    width: 3.5em;
+}
+.product-section-product a.added_to_cart.wc-forward:focus,.product-section-product a.wp-block-button__link.add_to_cart_button:focus{
+    outline: none !important;
+}
+.product-section-product,.column1-cover{
+    margin-top: 0px !important;
+}
+.product-section,.catering-services-product-section{
+    min-width: 1024px!important;
+}
+.product-section .wc-block-grid__product .wc-block-grid__product-onsale{
+    display: none;
+}
