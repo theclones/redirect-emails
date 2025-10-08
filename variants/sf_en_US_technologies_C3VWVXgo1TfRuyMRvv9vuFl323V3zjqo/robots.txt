@@ -1,0 +1,11 @@
+User-agent: *
+User-agent: AdsBot-Google
+Allow: /
+User-agent: AdsBot-Google-Mobile
+Allow: /
+User-agent: Bingbot
+Allow: /
+User-agent: FacebookExternalHit
+Allow: /
+
+Sitemap: sitemap.xml
