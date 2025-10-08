@@ -1,0 +1,165 @@
+.banner-section h2, 
+.banner-section p,
+.package-section h3,
+.package-section p,
+.package-section h4,
+.service-section h4,
+.service-section p,
+.service-section h5,
+.package-section .post .wp-block-buttons .wp-block-button__link{
+	font-family: "Inter", sans-serif;
+}
+/* Banner Section */
+.banner-section h2, .banner-section p, .package-section h3, .package-section p, .package-section h4, .service-section h4, .service-section p, .service-section h5{
+	margin-top: 0 !important;
+	margin-bottom: 0 !important;
+}
+.banner-section{
+	position: relative;
+}
+.banner-section .banner, .banner-section h2, .banner-section p{
+	margin-left: 5% !important;
+    margin-right: 5% !important;
+}
+.banner-section .banner img.wp-block-cover__image-background{
+	border-radius: 40px 300px 40px 40px;
+}
+.banner-section h2, .banner-section p, .package-section p.has-text-align-center, .service-section p.has-text-align-center{
+	width: 55%;
+}
+.banner-section .animal-img img{
+	position: absolute;
+    right: 10%;
+    transform: translate(60%);
+    bottom: 56px;
+    max-height: 680px;
+    max-width: 700px;
+    width: auto;
+    object-fit: cover;
+}
+/* Social Icons */
+.banner-section .social-icons{
+	position: absolute;
+    left: 0;
+    width: max-content;
+    transform: rotate(270deg) translateY(-100%);
+    top: 50%;
+    gap: 20px;
+}
+.banner-section .social-icons a{
+	font-size: 20px;
+}
+.banner-section .social-icons li{
+	color: #000000;
+}
+.banner-section .social-icons li:hover{
+	color: #67B94A !important;
+	transform: none;
+}
+.banner-section .social-icons:after{
+	content: 'Follow Us :';
+    position: absolute;
+    left: -60%;
+    font-size: 15px;
+    font-weight: 600;
+    bottom: 0;
+    color: #000000;
+}
+.banner-section .social-icons:before{
+	content: '';
+    position: absolute !important;
+    transform: rotate(90deg);
+    padding: 18px;
+    top: -6px;
+    left: -95%;
+    background: url(../images/arrow.png) no-repeat;
+}
+/* Package Section */
+.package-section p.has-text-align-center, .service-section p.has-text-align-center{
+	margin: 0 auto;
+}
+.package-section .post img{
+	width: 100%;
+	height: 270px;
+    object-fit: cover;
+    border-radius: 8px;
+}
+.package-section .post .wp-block-buttons .wp-block-button__link{
+	display: none;
+}
+.package-section .post{
+	position: relative;
+}
+.package-section .post .wp-block-buttons .wp-block-button__link{
+	padding: 8px 20px 8px 20px;
+}
+.package-section .post:hover .wp-block-buttons .wp-block-button__link{
+	display: block;
+	margin-top: -14em;
+    margin-left: 6em;
+}
+.package-section .post .wp-block-buttons .wp-block-button__link:hover{
+	background: #fff !important;
+    color: #000 !important;
+}
+.package-section .post:hover .post-content{
+	background-color: #67B94A !important;
+}
+.package-section .post:hover .post-content h4,
+.package-section .post:hover .post-content p{
+	color: #ffffff !important;
+}
+.package-section .post .post-content{
+	border-radius: 10px 50px 10px 10px;
+    padding: 12px;
+    margin-left: 0;
+    max-width: 290px;
+    margin-top: -35%;
+    position: relative;
+    gap: 10px;
+}
+.package-section .post-content p{
+	font-size: 12px !important;
+}
+.package-section .price p{
+	font-size: 15px !important;
+}
+/* Service Section */
+.service-section .service-num{
+	display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+.service-section .service-num:before{
+	content: "\f030";
+	font-weight: 900;
+	font-family: 'Font Awesome 6 Free';
+	float: left;
+    opacity: 1;
+    color: #000;
+	background: #ffffff;
+	box-shadow: 0px 3px 6px #00000029;
+    border-radius: 6px;
+	font-size: 36px;
+	width: 70px;
+    height: 70px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.service-section .service:hover .service-num{
+	color: #67b94a45 !important;
+}
+.service-section .service:hover .service-num:before{
+	background: #67B94A;
+    color: #fff;
+}
+.service-section .service:nth-child(2) .service-num:before{
+	content: "\f2e7";
+}
+.service-section .service:nth-child(3) .service-num:before{
+	content: "\f1eb";
+}
+.service-section .service:nth-child(4) .service-num:before{
+	content: "\f091";
+}
