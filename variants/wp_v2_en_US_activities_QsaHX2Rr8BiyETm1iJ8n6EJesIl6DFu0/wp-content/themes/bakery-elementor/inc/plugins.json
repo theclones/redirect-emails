@@ -1,0 +1,16 @@
+[ {
+  "name": "Elementor",
+  "slug": "elementor",
+  "required": false,
+  "force_activation": false
+}, {
+  "name": "Kirki Customizer Framework",
+  "slug": "kirki",
+  "required": false,
+  "force_activation": false
+},{
+  "name": "Element Pack Elementor Addons",
+  "slug": "bdthemes-element-pack-lite",
+  "required": false,
+  "force_activation": false
+}]
