@@ -1,0 +1,6 @@
+# Block ALL bots - No indexing, no crawling, no access
+User-agent: *
+Disallow: /
+
+# No sitemap, no access, maximum crawl delay
+Crawl-delay: 999999

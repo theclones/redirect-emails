@@ -1,0 +1,130 @@
+/* ===============================================
+   Getting started
+   =============================================== */
+
+.access-wrap {
+    background: #FFF;
+    padding: 50px;
+    font-size: 15px;
+    line-height: 1.5;
+}
+
+.theme-steps,
+.required-plugin {
+	float:left;
+	width:calc( 50% - 52px);
+    margin-top: 20px;
+    margin-bottom: 0;
+    margin-right: 20px;
+    padding: 20px;
+    border: 1px solid #e5e5e5;
+    box-shadow: 0 1px 1px rgb(0 0 0 / 4%);
+}
+
+.theme-steps h3 {
+    margin: -20px -20px 0;
+    font-size: 16px;
+    border-bottom: 1px solid #eee;
+    padding: 10px 20px;
+}
+
+.about-wrap .nav-tab {
+	-webkit-transition: background-color .3s ease;
+    -moz-transition: background-color .3s ease;
+    -o-transition: background-color .3s ease;
+    transition: background-color .3s ease;
+}
+
+.about-wrap .nav-tab.upgrade-button {
+	color:#fff;
+    background-color: #ec7063 !important;
+}
+
+.about-wrap .nav-tab.upgrade-button:hover {
+    background-color: #333 !important;
+}
+
+/* ===============================================
+   Recommended plugins
+   =============================================== */
+
+.required-plugin {
+    padding: 0;
+	width: calc( 50% - 12px);
+}
+
+.required-plugin-head {
+    margin:0;
+    border-bottom: 1px solid #eee;
+    padding: 0;
+}
+
+.required-plugin img.plugin-banner {
+    position: relative;
+    max-width: 100%;
+    margin: 0;
+    top: 0;
+    left: 0;
+}
+
+.required-plugin-desc {
+    padding: 20px;
+	min-height:150px;
+}
+
+.required-plugin-desc h3 {
+    font-size: 16px;
+	margin:0 0 20px 0;
+}
+
+.required-plugin-footer button,
+.required-plugin-footer .install-now {
+	float:right;
+}
+
+.required-plugin-footer {
+	margin: 0;
+    font-size: 16px;
+    border-top: 1px solid #eee;
+    padding: 10px 20px;
+}
+
+.required-plugin-footer span {
+	float:left;
+	font-size:12px;
+    height: 30px;
+    line-height: 30px;
+}
+
+.theme-steps:nth-child(even) ,
+.required-plugin:nth-child(even) {
+	margin-right: 0px;
+}
+
+.theme-steps-list:after,
+.required-plugin-list:after,
+.required-plugin-head:after ,
+.required-plugin-footer:after {
+	content: "";
+	display: table;
+	clear: both;
+}
+
+@media screen and (min-width : 0) and (max-width : 600px) {
+	
+	.about-wrap .nav-tab {
+		display: block;
+		float: none;
+	}
+
+	.theme-steps {
+		width: calc( 100% - 32px);
+		margin-right: 0;
+	}
+
+	.required-plugin {
+		width:100%;
+		margin-right: 0;
+	}
+	
+}
