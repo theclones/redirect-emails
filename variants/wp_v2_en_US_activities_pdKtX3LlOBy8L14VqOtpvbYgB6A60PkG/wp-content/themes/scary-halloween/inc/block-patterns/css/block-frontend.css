@@ -1,0 +1,247 @@
+.banner-section:before{
+    content: '';
+    position: absolute;
+    height: 120px;
+    width: 1px;
+    background-color: #ffffff59;
+    z-index: 2;
+    left: 3%;
+    top: 0;
+}
+.banner-section .bat-2,.banner-section .bat-3,.banner-section .bat-4{
+    animation: bat-fly 3s ease-in-out infinite;
+}
+.banner-section .bat-1{
+    top: 15%;
+    left: 0;
+    transform: rotate(198deg);
+}
+.banner-section .bat-2{
+    top: 30%;
+    left: 46%;
+    transform: translateX(-50%);
+}
+.banner-section .bat-3{
+    top: 35%;
+    right: 15%;
+}
+.banner-section .bat-4{
+    top: 9%;
+    right: 1%;
+}
+.banner-section .banner-content{
+    bottom: 57%;
+    left: 50%;
+    transform: translate(-50%, 100%);
+    width: 100%;
+    padding: 0 15%;
+}
+.banner-section .wp-block-button a{
+    padding: 10px 30px 10px 20px;
+    position: relative;
+}
+.banner-section .wp-block-button a:after{
+    content: '\f105';
+    position: absolute !important;
+    right: 7%;
+    color: #E3652D;
+    font-size: 14px;
+    font-family: "Font Awesome 6 Free";
+    transform: translateX(-50%);
+}
+.banner-section .wp-block-button a:hover{
+    background-color: #E3652D !important;
+    color: #ffffff !important;
+}
+.banner-section .wp-block-button a:hover:after {
+    color: #ffffff !important;
+}
+.banner-section .slider-text{
+    left: 50%;
+    bottom: 0!important;
+    transform: translateX(-50%);
+    line-height: 225px;
+    text-transform: uppercase;
+    color: transparent;
+    -webkit-text-stroke: 1px #ffffff;
+    background-color: transparent;
+    font-weight: 900;
+    display: flex;
+    justify-content: center;
+    font-family: sans-serif;
+    background: linear-gradient(to right, #E3652D 15%, #fff0 25%, #E3652D 85%, #fff0 95%);
+    -webkit-background-clip: text;
+    text-fill-color: transparent;
+    background-size: 200% 100%;
+    animation: textShine 5s ease-in-out infinite alternate;
+}
+.event-section .mage_grid_box{
+    display: grid !important;
+    grid-template-columns: auto auto auto;
+}
+.event-section  .section-text{
+    font-family: "Creepster", system-ui;
+    font-weight: 400;
+}
+.event-section  .section-title{
+    font-family: "Mulish", sans-serif;
+    font-weight: 800;
+}
+.event-section  .section-text:after{
+    content: '';
+    background-color: #ffffff;
+    height: 4px;
+    width: 25px;
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    margin-left: 10px;
+}
+.event-section .mage_grid_box .mep_bg_thumb{
+    width: 100%;
+    height: 200px;
+    border-radius: 15px;
+}
+.event-section .mage_grid_box .mep-event-excerpt,.event-section .mage_grid_box.mep-list-footer,.event-section .mage_grid_box .mep_list_event_date,
+.event-section .mage_grid_box h2.mep_list_title,.event-section .mage_grid_box .mep-list-footer{
+    margin: 0 !important;
+}
+.event-section .mage_grid_box .mep-event-excerpt p{
+    overflow: hidden;
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+    margin: 0 !important;
+}
+.event-section .mage_grid_box .mep_list_event_details{
+    position: absolute;
+    right: 0;
+    top: 50%;
+    transform: translateY(-30%);
+}
+.event-section .mage_grid_box .mep_event_list_item{
+    border: 0 !important;
+}
+.event-section .mage_grid_box .mep-ev-start-date,.event-section .mage_grid_box .mep-list-header:before,.event-section .mage_grid_box .mep_list_event_date i,
+.event-section .mage_grid_box .mep_list_date{
+    display: none;
+}
+.event-section .mage_grid_box .evl-cc h5:first-child{
+    position: absolute;
+    top: -30px;
+    padding: 0 0 7px 20px;
+    margin-bottom: 0;
+    font-family: "Creepster", system-ui;
+    color: #E3652D;
+    font-size: 20px;
+    font-weight: 500;
+}
+.event-section .mage_grid_box .evl-cc h5:last-child{
+    padding: 0 0 7px 20px;
+    color: #E3652D;
+    font-size: 14px;
+    font-weight: 400;
+}
+.event-section .mage_grid_box .mep_list_thumb{
+    width: 33%;
+}
+.event-section .mage_grid_box .mep_list_event_details{
+    width: 66%;
+}
+.event-section .mage_grid_box .mep_bg_thumb{
+    height: 180px;
+    border-radius: 10px;
+}
+.event-section .mage_grid_box .mep_bg_thumb:after{
+    content: '';
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    background: #000;
+    top: 0;
+    left: 0;
+    opacity: 0.4;
+}
+@media screen and (max-width: 767px){
+    .banner-section .bat-section img,.banner-section .slider-text,.banner-section:before{
+        display: none;
+    }
+    .banner-section{
+        min-height: 300px !important;
+    }
+    .banner-section h1{
+        font-size: 30px !important;
+    }
+    .banner-section .banner-content{
+        padding: 0 5%;
+        transform: translate(-50%, 55%)!important;
+    }
+    .event-section .mage_grid_box{
+         grid-template-columns: auto;
+    }
+    .event-section .mage_grid_box .mep_list_event_details{
+        width: 95% !important;
+        right: 5%;
+    }
+    .event-section .mage_grid_box .mep_list_event_details h2.mep_list_title{
+        font-size: 20px !important;
+    }
+    .event-section .mage_grid_box .mep_list_event_details h5{
+        font-size: 18px !important;
+    }
+}
+@media screen and (min-width: 768px) and (max-width: 1199px){
+    .event-section .mage_grid_box{
+         grid-template-columns: auto auto;
+    }
+}
+@media screen and (min-width: 768px) and (max-width: 991px){
+    .banner-section .slider-text{
+        font-size: 120px !important;
+    }
+    .banner-section .slider-text{
+        bottom: -10% !important;
+    }
+    .event-section .mage_grid_box .mep_bg_thumb{
+        height: 150px !important;
+    }
+    .banner-section:before{
+        left: 7%;
+        height: 60PX !important;
+    }
+    .banner-section .bat-1{
+        top: 10%;
+    }
+    .banner-section {
+        min-height: 500px !important;
+    }
+    .banner-section .bat-2{
+        top: 20%;
+    }
+    .banner-section .bat-3{
+        top: 25%;
+    }
+    .banner-section .bat-4{
+       top: 5% !important;
+    }
+    .banner-section .banner-content{
+        bottom: 65%;
+    }
+   
+}
+@media screen and (min-width: 992px) and (max-width: 1199px){
+   .banner-section .slider-text{
+    font-size: 150px !important;
+   }
+   .banner-section .slider-text{
+        bottom: -4% !important;
+   }
+   .banner-section:before{
+        left: 5%;
+   }
+}
+@media screen and (min-width: 1200px) and (max-width: 1600px){
+   .banner-section .slider-text{
+    font-size: 190px !important;
+   }
+}
