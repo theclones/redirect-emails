@@ -1,0 +1,259 @@
+.banner-section .banner-content .short-text,
+.banner-section .search-form h2,
+.section-small-text {
+  font-family: 'Dancing Script', cursive;
+}
+/* Banner Section */
+.banner-section {
+  border-radius: 50px;
+}
+.banner-section .banner-content{
+  position: absolute;
+  top: 30%;
+  left: 7%;
+  right: 55%;
+}
+.banner-section .banner-content .short-text:after{
+  background: linear-gradient(to left,#fff 0,#fff 16%,#0000 15%,#0000 16px,#fff 20%,#fff 43%, #0000 43%,#0000 46%, #fff 43%,#fff 100%);
+  top: 10%;
+  left: 15%;
+  height: 2px;
+  margin: 0px auto;
+}
+.banner-section .wp-block-buttons a{
+  padding: 12px 20px;
+}
+.banner-section .wp-block-buttons a:hover{
+  background: #000 !important; 
+}
+/* Search Form */
+.banner-section .search-form{
+  position: absolute;
+  right: -10%;
+  transform: translate(-80%, -50%);
+  border-radius: 10px;
+  background: #fff;
+  padding: 20px;
+  width: clamp(300px, 25% ,350px);
+}
+.banner-section .banner-form-title,
+.featured-section .mphb_sc_rooms-wrapper p{
+  color: #000 !important;
+}
+.banner-section .search-form .mphb-required-fields-tip{
+  display: none;
+}
+.banner-section .search-form p input,
+.banner-section .search-form p{
+  margin-bottom: 0;
+}
+.banner-section .search-form p select{
+  border: 1px solid #c8c8c8;
+  width: 100%;
+  font-size: 16px;
+  padding: 10px 10px;
+  height: auto;
+  background: #fff;
+  color: #8d8b8b;
+  font-weight: 600;
+}
+.banner-section .search-form .button{
+  width: 100%;
+  margin-top: 15px;
+}
+/* Featured Section */
+.featured-section .section-small-text{
+  margin-top: 25px;
+}
+.banner-section .banner-content .short-text:after,
+.featured-section .section-small-text:after,
+.featured-section .section-small-text:before{
+  position: absolute;
+  content: "";
+  width: 12%;
+  display: block;
+  border-radius: 30px;
+}
+.featured-section .section-small-text:before{
+  background: linear-gradient(to right,#2264C6 0,#2264C6 16%,#fff 15%,#fff 30px,#2264C6 20%,#2264C6 43%, #fff 43%,#fff 46%, #2264C6 43%,#2264C6 100%);
+  left: 32%;
+  height: 3px;
+  margin: 16px auto;
+}
+.featured-section .section-small-text:after{  
+  background: linear-gradient(to left,#2264C6 0,#2264C6 16%,#fff 15%,#fff 30px,#2264C6 20%,#2264C6 43%, #fff 43%,#fff 46%, #2264C6 43%,#2264C6 100%);
+  right: 32%;
+  height: 3px;
+  margin: -10px auto;
+}
+.featured-section .mphb_sc_rooms-wrapper .mphb-room-type{
+  box-shadow: 0px 3px 6px #00000029;
+  border-radius: 12px;
+  min-height: auto;
+  padding: 0;
+}
+.featured-section .type-mphb_room_type img{
+  border-radius: 10px 10px 0 0;
+  object-fit: cover;
+}
+.featured-section .mphb_sc_rooms-wrapper p{
+  margin-left: 22px;
+}
+.featured-section .mphb-to-book-btn-wrapper form{
+  border-top: 2px dashed #707070;
+  padding: 16px 0px 16px 0px;
+  margin: 0px 15px 0px 15px;
+  position: relative;
+  top: -28px;
+}
+.featured-section .mphb-room-type-title.entry-title,
+.featured-section .mphb-room-type-title.entry-title a{
+  margin-left: 0;
+}
+.featured-section .mphb-room-type-title.entry-title,
+.featured-section .mphb-loop-room-type-attributes{
+  padding: 0 22px;
+}
+.featured-section .mphb_sc_rooms-wrapper .mphb-regular-price .mphb-price-period{
+  border: none;
+}
+.featured-section .mphb_sc_rooms-wrapper .button.mphb-book-button{
+  background-color: #2264C6;
+  color: #fff;
+  font-size: 15px;
+  font-weight: 700 !important;
+  padding: 12px 20px !important;
+  text-transform: capitalize;
+  border-radius: 6px !important;
+  text-decoration: none !important;
+  border: none;
+}
+.featured-section .mphb-view-details-button-wrapper{
+  text-align: end;
+  margin-top: -15px !important;
+  margin-right: 30px;
+  position: relative;
+  bottom: -44px;
+  z-index: 99999;
+}
+.featured-section .mphb-view-details-button-wrapper a{
+  color: #000;
+  position: relative;
+  font-weight: 600;
+}
+.featured-section .mphb-view-details-button-wrapper a:after{
+  content: "\f061";
+  font-family: 'Font Awesome 5 Free';
+  font-weight: 600;
+  position: absolute;
+  right: -12px;
+  bottom: 0;
+  top: 0px;
+  color: #2264C6;
+  font-size: 12px;
+  transform: rotate(-45deg);
+}
+.featured-section .mphb-to-book-btn-wrapper{
+  margin-bottom: -40px;
+}
+/* Media */
+@media screen and (max-width: 720px) {
+  .banner-section{
+    max-height: 160px !important;
+    min-height: 160px !important;
+    margin: 0 -10px !important;
+  }
+  .banner-section h1, .banner-section p, 
+  .banner-section .search-form{
+    display: none;
+  }
+  .banner-section .banner-content{
+    position: unset;
+  }
+  .banner-section .wp-block-buttons{
+    display: flex;
+    justify-content: center;
+  }
+  .featured-section .mphb_sc_rooms-wrapper.mphb-room-types {
+    display: block !important;
+  }
+  .featured-section .section-small-text:before{
+    background: linear-gradient(to right,#2264C6 0,#2264C6 50%,#fff 50%,#fff 10px,#2264C6 52%,#2264C6 27%, #fff 43%,#fff 46%, #2264C6 43%,#2264C6 100%);
+    left: 15%;
+  }
+  .featured-section .section-small-text:after{
+    background: linear-gradient(to right,#2264C6 0,#2264C6 50%,#fff 50%,#fff 10px,#2264C6 52%,#2264C6 27%, #fff 43%,#fff 46%, #2264C6 43%,#2264C6 100%);
+    right: 15%;
+  }
+  .featured-section .section-heading{
+    font-size: 25px !important;
+  }
+} 
+@media screen and (max-width: 992px) and (min-width: 767px) {
+  .banner-section{
+    max-height: 500px;
+    min-height: 500px !important;
+    margin: 0 -35px !important;
+  }
+  .banner-section .banner-content{
+    top: 25%;
+    left: 4%;
+  }
+  .banner-section .banner-content .short-text:after{
+    background: linear-gradient(to left,#fff 0,#fff 16%,#0000 15%,#0000 10px,#fff 20%,#fff 43%, #0000 43%,#0000 46%, #fff 43%,#fff 100%);
+    top: 8%;
+    left: 25%;
+  }
+  .banner-section .banner-content h1{
+    font-size: 30px !important;
+  }
+  .banner-section .banner-content p,
+  .banner-section .wp-block-buttons a{
+    font-size: 12px !important;
+  }
+  .banner-section .search-form{
+    right: -100px;
+    width: clamp(25px, 25% ,212px);
+  }
+  .featured-section .section-small-text:before{
+    background: linear-gradient(to right,#2264C6 0,#2264C6 20%,#fff 22%,#fff 22px,#2264C6 0%,#2264C6 52%, #fff 53%,#fff 55%, #2264C6 43%,#2264C6 100%);
+    left: 27%;
+  }
+  .featured-section .section-small-text:after{
+    background: linear-gradient(to left,#2264C6 0,#2264C6 20%,#fff 22%,#fff 22px,#2264C6 0%,#2264C6 52%, #fff 53%,#fff 55%, #2264C6 43%,#2264C6 100%);
+    right: 27%; 
+  }
+  .featured-section .mphb_sc_rooms-wrapper.mphb-room-types {
+    gap: 0 !important;
+  }
+} 
+@media screen and (max-width: 1024px) and (min-width: 1000px) {
+  .banner-section{
+    max-height: 500px;
+    min-height: 500px;
+    margin: 0 -43px !important;
+  }
+  .banner-section .banner-content .short-text:after{
+    background: linear-gradient(to left,#fff 0,#fff 16%,#0000 15%,#0000 10px,#fff 20%,#fff 43%, #0000 43%,#0000 46%, #fff 43%,#fff 100%);
+    left: 20%;
+    top: 6%;
+  }
+  .banner-section .banner-content h1{
+    font-size: 30px !important;
+  }
+  .banner-section .banner-content p,
+  .banner-section .wp-block-buttons a{
+    font-size: 12px !important;
+  }
+  .banner-section .search-form{
+    transform: translate(-46%, -50%);
+    top: 48%;
+    width: clamp(270px, 25% ,350px);
+  }
+  .featured-section .section-small-text:before{
+    left: 30%;
+  }
+  .featured-section .section-small-text:after{
+    right: 30%;
+  }
+}
