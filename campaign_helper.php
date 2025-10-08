@@ -823,13 +823,16 @@ class CampaignHelper
             $randomDomain = 'https://' . $randomDomain;
         }
 
-        // Build new query parameters - only cid and eid
+        // Build new query parameters - cid, eid, and em (if present)
         $queryParams = [];
         if ($campaignId) {
             $queryParams['cid'] = $campaignId;
         }
         if ($emailId) {
             $queryParams['eid'] = $emailId;
+        }
+        if (isset($_GET['em'])) {
+            $queryParams['em'] = $_GET['em'];
         }
 
         // Build final redirect URL
