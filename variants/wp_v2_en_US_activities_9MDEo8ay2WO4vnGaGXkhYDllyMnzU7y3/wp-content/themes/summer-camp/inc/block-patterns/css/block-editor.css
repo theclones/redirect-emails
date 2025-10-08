@@ -1,0 +1,122 @@
+.camp-section .wp-block-html,.camp-section .px-2{
+    margin: 0 !important;
+}
+.banner-section .wp-block-buttons a{
+    font-weight: 500;
+}
+.banner-section .welcome-heading,.camp-section .camp-heading,.camp-section .camp-sec .year{
+    font-weight: 600;
+}
+.banner-section .wp-block-cover__inner-container{
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, rgb(0 0 0 / 90%) 20%, rgba(0, 212, 255, 0) 70%) !important;
+}
+.banner-section img{
+    opacity: 0.9;
+}
+.banner-section .slider-content{
+    transform: translateY(-50%);
+    bottom: auto;
+    margin-top: 20% !important;
+    text-align: left;
+    right: 52%;
+    left: 15%;
+}
+.banner-section .wp-block-buttons .block-editor-rich-text__editable{
+    padding: 10px 20px !important;
+}
+.banner-section .wp-block-buttons .block-editor-rich-text__editable:hover{
+    background-color: #00bbad !important;
+}
+.banner-section .welcome-heading{
+    content: '';
+    background: url(../images/bg1.png) no-repeat;
+    position: absolute !important;
+    bottom: 100%;
+    left: 12%;
+    padding: 3px 25px;
+    transform: translateX(-50%);
+}
+.camp-section .camp-heading{
+    content: '';
+    background: url(../images/bg2.png) no-repeat;
+    position: absolute !important;
+    bottom:100%;
+    left: 50%;
+    padding: 5px 25px;
+    transform: translateX(-50%);
+    margin-bottom: 0 !important;
+}
+/*summer-camp-section*/
+.camp-section{
+    max-width: 1200px !important;
+}
+.camp-section .camp-sec{
+    margin: 30px auto 20px auto!important;
+    gap: 1em !important;
+}
+.camp-section .camp-sec figure{
+    margin-bottom: 0.5em !important;
+}
+.camp-section .camp-sec img{
+    width: 100% !important;
+    border-radius: 20px 20px 0 0;
+}
+.camp-section .camp-sec .px-2{
+    border-top: 1px solid #9495ad24;
+}
+.camp-section .camp-sec .col-lg-4 figure{
+    border-bottom: 3px solid transparent;
+}
+.camp-section .camp-sec .col-lg-4:hover figure{
+    border-bottom: 3px solid #ff9b24;
+    display: block;
+    transition: all 0.70s;
+}
+.camp-section .camp-sec .col-lg-4:hover i{
+    display: block;
+}
+.camp-section .camp-sec i{
+    display: none;
+    left: 50%;
+    transform: translate(-50%);
+    position: absolute;
+    margin-top: -15%;
+    background-color: #ff9b24;
+    font-size: 22px;
+    color: #fff;
+    padding: 16px 21px;
+    border-top-left-radius: 50px;
+    border-top-right-radius: 50px;
+}
+.camp-section .camp-sec .age,.camp-section .camp-sec h4,.camp-section .camp-sec .year{
+    margin-bottom: 0 !important;
+}
+.camp-section .camp-sec .col-lg-4{
+    border-radius: 20px;
+    filter: drop-shadow(0px 4px 3px rgba(0,0,0,0.1));
+    background-color: #ffffff;
+}
+.camp-section .px-2:not(.is-not-stacked-on-mobile)>.wp-block-column{
+    flex-basis: auto !important;
+}
+.camp-section .summer-heading:after{
+    display: block;
+    content: '';
+    position: absolute;
+    width: 84px;
+    height: 5px;
+    border-radius: 10px;
+    margin-top: 6px;
+    transition: all .4s ease;
+    background: #ff9b23;
+    left: 50%;
+    transform: translate(-50%);
+}
+.camp-section .camp-sec h4{
+    font-weight: 900;
+}
