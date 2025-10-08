@@ -1,0 +1,88 @@
+.banner-section h1,.event-section .section-text{
+	font-family: "Creepster", system-ui;;
+}
+.banner-section h1{
+	line-height: 1.2!important;
+}
+.banner-section h1{
+	margin: 0 !important;
+	padding: 0 !important;
+}
+.banner-section:before{
+    content: '';
+    position: absolute;
+    height: 120px;
+    width: 1px;
+    background-color: #ffffff59;
+    z-index: 2;
+    left: 3%;
+    top: 0;
+}
+.banner-section .bat-2,.banner-section .bat-3,.banner-section .bat-4{
+    animation: bat-fly 3s ease-in-out infinite;
+}
+.banner-section .bat-1{
+    top: 15%;
+    left: -75%;
+    transform: rotate(198deg);
+}
+.banner-section .bat-2{
+    top: 30%;
+    left: 50%;
+    transform: translateX(50%);
+}
+.banner-section .bat-3{
+    top: 35%;
+    left: 100%;
+}
+.banner-section .bat-4{
+    top: 9%;
+    right: -75%;
+}
+.banner-section .banner-content{
+    bottom: 57%;
+    left: 50%;
+    transform: translate(-50%, 25%);
+    width: 100%;
+    padding: 0 15%;
+}
+.banner-section .wp-block-button .wp-block-button__link{
+    padding: 10px 30px 10px 20px;
+    position: relative;
+}
+.banner-section .wp-block-button .wp-block-button__link:after{
+    content: '\f105';
+    position: absolute !important;
+    right: 7%;
+    color: #E3652D;
+    font-size: 14px;
+    font-family: "Font Awesome 6 Free";
+    transform: translateX(-50%);
+}
+.banner-section .wp-block-button .wp-block-button__link:hover{
+    background-color: #E3652D !important;
+    color: #ffffff !important;
+}
+.banner-section .wp-block-button .wp-block-button__link:hover:after {
+    color: #ffffff !important;
+}
+.banner-section .slider-text{
+	font-size: 220px !important;
+    left: 50%;
+    bottom: 0!important;
+    transform: translateX(-50%);
+    line-height: 225px;
+    text-transform: uppercase;
+    color: transparent;
+    -webkit-text-stroke: 1px #ffffff;
+    background-color: transparent;
+    font-weight: 900;
+    display: flex;
+    justify-content: center;
+    font-family: sans-serif;
+    background: linear-gradient(to right, #E3652D 15%, #fff0 25%, #E3652D 85%, #fff0 95%);
+    -webkit-background-clip: text;
+    text-fill-color: transparent;
+    background-size: 200% 100%;
+    animation: textShine 5s ease-in-out infinite alternate;
+}
