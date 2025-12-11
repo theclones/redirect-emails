@@ -177,12 +177,17 @@ class CampaignHelper
 
     /**
      * Extract campaign ID from URL path or GET parameter
-     * Priority: cid-{ID} in path > ?cid={ID} parameter
+     * Priority: combined cid-{ID}-eid-{ID} in path > cid-{ID} in path > ?cid={ID} parameter
      */
     public function extractCampaignId()
     {
-        // Check path for cid-{ID} pattern first (highest priority)
+        // Check path for combined cid-{ID}-eid-{ID} pattern first (highest priority)
         $request_uri = $_SERVER['REQUEST_URI'] ?? '';
+        if (preg_match('/cid-(\d+)-eid-[^/?&]+/', $request_uri, $matches)) {
+            return intval($matches[1]);
+        }
+
+        // Check path for standalone cid-{ID} pattern
         if (preg_match('/cid-(\d+)/', $request_uri, $matches)) {
             return intval($matches[1]);
         }
@@ -216,12 +221,17 @@ class CampaignHelper
 
     /**
      * Extract email ID from URL path or GET parameter
-     * Priority: eid-{ID} in path > ?eid={ID} parameter
+     * Priority: combined cid-{ID}-eid-{ID} in path > eid-{ID} in path > ?eid={ID} parameter
      */
     public function extractEmailId()
     {
-        // Check path for eid-{ID} pattern first (highest priority)
+        // Check path for combined cid-{ID}-eid-{ID} pattern first (highest priority)
         $request_uri = $_SERVER['REQUEST_URI'] ?? '';
+        if (preg_match('/cid-\d+-eid-([a-zA-Z0-9@._-]+)/', $request_uri, $matches)) {
+            return urldecode($matches[1]);
+        }
+
+        // Check path for standalone eid-{ID} pattern
         if (preg_match('/eid-([a-zA-Z0-9@._-]+)/', $request_uri, $matches)) {
             return urldecode($matches[1]);
         }
