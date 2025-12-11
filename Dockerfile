@@ -2,15 +2,14 @@ FROM nginx:alpine
 
 # Install PHP and PHP-FPM
 RUN apk add --no-cache \
-    php82 \
-    php82-fpm \
-    php82-opcache \
-    php82-session \
-    php82-json \
-    php82-mbstring \
-    php82-curl \
-    php82-openssl \
-    php82-redis \
+    php83 \
+    php83-fpm \
+    php83-opcache \
+    php83-session \
+    php83-mbstring \
+    php83-curl \
+    php83-openssl \
+    php83-redis \
     supervisor
 
 # Create PHP-FPM socket directory
@@ -23,7 +22,7 @@ COPY nginx.conf /etc/nginx/nginx.conf
 COPY supervisord.conf /etc/supervisor/conf.d/supervisord.conf
 
 # Copy PHP-FPM configuration
-COPY php-fpm.conf /etc/php82/php-fpm.d/www.conf
+COPY php-fpm.conf /etc/php83/php-fpm.d/www.conf
 
 # Create web directory
 RUN mkdir -p /var/www/html
