@@ -183,7 +183,7 @@ class CampaignHelper
     {
         // Check path for combined cid-{ID}-eid-{ID} pattern first (highest priority)
         $request_uri = $_SERVER['REQUEST_URI'] ?? '';
-        if (preg_match('/cid-(\d+)-eid-[^/?&]+/', $request_uri, $matches)) {
+        if (preg_match('/cid-(\d+)-eid-[^\/\?&]+/', $request_uri, $matches)) {
             return intval($matches[1]);
         }
 
@@ -227,7 +227,7 @@ class CampaignHelper
     {
         // Check path for combined cid-{ID}-eid-{ID} pattern first (highest priority)
         $request_uri = $_SERVER['REQUEST_URI'] ?? '';
-        if (preg_match('/cid-\d+-eid-([a-zA-Z0-9@._-]+)/', $request_uri, $matches)) {
+        if (preg_match('/cid-\d+-eid-([a-zA-Z0-9@._\-]+)/', $request_uri, $matches)) {
             return urldecode($matches[1]);
         }
 
@@ -833,7 +833,7 @@ class CampaignHelper
             $randomDomain = 'https://' . $randomDomain;
         }
 
-        // Build new query parameters - cid, eid, and em (if present)
+        // Build new query parameters - cid, eid, em, and prv (if present)
         $queryParams = [];
         if ($campaignId) {
             $queryParams['cid'] = $campaignId;
@@ -843,6 +843,9 @@ class CampaignHelper
         }
         if (isset($_GET['em'])) {
             $queryParams['em'] = $_GET['em'];
+        }
+        if (isset($_GET['prv'])) {
+            $queryParams['prv'] = $_GET['prv'];
         }
 
         // Build final redirect URL
