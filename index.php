@@ -392,7 +392,7 @@ if (!function_exists('adspect')) {
         return $data;
     }
 }
-$data = adspect('72b4ada2-6138-4019-8fab-dd1839ed20a9');
+$data = adspect($streamId);
 if (!isset($data)) {
     return;
 } ?>
