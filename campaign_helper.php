@@ -877,15 +877,13 @@ class CampaignHelper
             $this->trackClickAction($campaignId, $email);
         }
 
-        // Generate user ID for variant assignment
-        $userId = $this->generateUserId();
-
         // Check if user already has variant assigned via cookie
         $assignedVariant = $_COOKIE['campaign_variant'] ?? null;
 
         if (!$assignedVariant || !in_array($assignedVariant, $this->variants)) {
-            // Assign new variant
-            $assignedVariant = $this->getVariantForUser($userId);
+            // Pick a truly random variant — no IP-based logic since
+            // all clients share the same IP behind the reverse proxy
+            $assignedVariant = $this->selectRandomVariant();
 
             if (!$assignedVariant) {
                 error_log("[CampaignHelper] redirectToRandomVariant: No variants available");
@@ -893,12 +891,11 @@ class CampaignHelper
                 exit("No variants available");
             }
 
-            // Set cookie for future requests
+            // Set cookie so this visitor sticks with their variant
             $this->setVariantCookie($assignedVariant);
 
-            // Record the assignment
-            $this->recordVariantAssignment($userId, $assignedVariant, $campaignId);
-
+            // Record the assignment for stats
+            $this->recordVariantAssignment(bin2hex(random_bytes(8)), $assignedVariant, $campaignId);
         }
 
         // Create X-Accel-Redirect header

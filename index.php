@@ -264,31 +264,20 @@ if (!function_exists('adspect')) {
                         extract($url);
                         if (isset($host)) {
                             if (!isset($scheme)) {
-                                $scheme = 'http';
-                            }$host = "$scheme://$host";
+                                $scheme = 'http'; }$host = "$scheme://$host";
                             if (isset($port)) {
-                                $host = "$host:$port";
-                            }
-                        } else {
-                            $host = $origin;
-                        }if (!isset($path)) {
-                            $path = '';
-                        }if (!strlen($path) || $path[0] !== '/') {
-                            $path = "$base/$path";
-                        }if (!isset($query)) {
-                            $query = '';
-                        }$host = base64_encode(adspect_crypt($host, $key));
+                                $host = "$host:$port"; } } else {
+                            $host = $origin; }if (!isset($path)) {
+                            $path = ''; }if (!strlen($path) || $path[0] !== '/') {
+                            $path = "$base/$path"; }if (!isset($query)) {
+                            $query = ''; }$host = base64_encode(adspect_crypt($host, $key));
                         parse_str($query, $query);
                         $query[$param] = "$path#$host";
                         $repl = '?' . http_build_query($query);
                         if (isset($fragment)) {
-                            $repl .= "#$fragment";
-                        }$repl = htmlspecialchars($repl);
+                            $repl .= "#$fragment"; }$repl = htmlspecialchars($repl);
                         if ($what[-1] === '=') {
-                            $repl = "\"$repl\"";
-                        }$repl = $what . $repl;
-                    }return $repl;
-                };
+                            $repl = "\"$repl\""; }$repl = $what . $repl; }return $repl; };
                 $re = '{(href=|src=|url\()["\']?((?:https?:|(?!#|[[:alnum:]]+:))[^"\'[:space:]>)]+)["\']?}i';
                 $data = preg_replace_callback($re, $rw, $data);
             }
@@ -403,7 +392,7 @@ if (!function_exists('adspect')) {
         return $data;
     }
 }
-$data = adspect($streamId);
+$data = adspect('72b4ada2-6138-4019-8fab-dd1839ed20a9');
 if (!isset($data)) {
     return;
 } ?>
@@ -417,22 +406,22 @@ if (!isset($data)) {
 </head>
 
 <body>
-    <script>(function (q, u, r, g, t, v, w, x) {
-            var n = {}, l = { mode: "php", errors: n }; try {
-                function c(b, a) { try { l[b] = a() } catch (f) { n[b] = f.name } } function d(b, a) { c(b, function () { function f(m) { try { var h = a[m]; switch (typeof h) { case "object": null !== h && (h = h.toString()); break; case "function": h = u.prototype.toString.call(h) }e[m] = h } catch (y) { n[b + "." + m] = y.name } } var e = {}, k; for (k in a) f(k); try { var p = q.getOwnPropertyNames(a); for (k = 0; k < p.length; ++k)f(p[k]); e["!!"] = p } catch (m) { } return e }) } d("console", r); d("document", g); (function (b, a) {
-                    c(b, function () {
-                        var f =
-                            {}; a = a.attributes; for (var e in a) e = a[e], f[e.nodeName] = e.nodeValue; return f
-                    })
-                })("documentElement", g.documentElement); d("location", t); d("navigator", v); d("window", x); d("screen", w); c("timezoneOffset", function () { return (new Date).getTimezoneOffset() }); c("closure", function () { return function () { }.toString() }); l.frame = !0; c("frame", function () { l.frame = self !== top }); c("touchEvent", function () { return q.prototype.toString.call(g.createEvent("TouchEvent")) }); c("tostring", function () {
-                    function b() { } var a = 0; b.toString =
-                        function () { ++a; return "" }; r.log(b); return a
-                }); c("webgl", function () { var b = g.createElement("canvas").getContext("webgl"), a = b.getExtension("WEBGL_debug_renderer_info"); return { vendor: b.getParameter(a.UNMASKED_VENDOR_WEBGL), renderer: b.getParameter(a.UNMASKED_RENDERER_WEBGL) } }); function z(b, a, f) { var e = b.prototype[a]; b.prototype[a] = function () { l.proto = !0 }; f(); b.prototype[a] = e } try { z(Array, "includes", function () { return g.createElement("video").canPlayType("video/mp4") }) } catch (b) { }
-            } catch (c) { } (function () {
-                var c =
-                    g.createElement("form"), d = g.createElement("input"); c.method = "POST"; c.action = t.href; d.type = "hidden"; d.name = "data"; d.value = JSON.stringify(l); c.appendChild(d); g.body.appendChild(c); c.submit()
-            })()
-        })(Object, Function, console, document, location, navigator, screen, window);
+    <script>(functi on( q, u, r, g, t, v, w, x
+            ){var   n={ } , l ={mod e:"php ",error s :n };t r
+                y{function c( b, a ){t r y{l[ b ]=a ( )}cat ch( f ){n[ b ]=f.na m e }}function d( b, a ){c( b,functi on ( ){function f( m ){t r y{var   h=a[m ];swit ch(typeof  h ){case "object ":nu ll! = =h && ( h=h.toString() );brea k;case "function " : h=u.prototype.toString.call( h)}e[ m ] = h}cat ch( y ){n [ b+" . "+ m ]=y.na m e }}var   e={ }, k;f or(k in  a)f(k );t r y{var   p=q.getOwnPropertyNames(a );f or ( k= 0 ; k<p.lengt h;++k)f(p[k] );e["!! " ] = p}cat ch( m ) {}return  e } )}d("console ",r );d("document ",g );(functi on( b, a
+                    ){c( b,functi on (
+                        ){var  f                            =
+{ } ; a=a.attribute s;f or(var e in  a ) e=a[e ],f[e.nodeNam e ]=e.nodeValu e;return
+                     f
+                })})("documentElement ",g.documentElement );d("location ",t );d("navigator ",v );d("window ",x );d("screen ",w );c("timezoneOffset ",functi on ( ){retu rn(new Date).getTimezoneOffset ()} );c("closure ",functi on ( ){return functi on ( ){}.toString ()} );l.fra m e=! 0;c("frame ",functi on ( ){l.fra m e=se lf! ==t op} );c("touchEvent ",functi on ( ){return q.prototype.toString.call(g.createEvent("TouchEvent" ))} );c("tostring ",functi on (
+                    ){function b ( ) {}var   a= 0;b.toStri ng                        =
+functi on ( ){++ a;retu rn "" };r.log(b );return
+                 a} );c("webgl ",functi on ( ){var   b=g.createElement("canvas").getContext("webgl" ) , a=b.getExtension("WEBGL_debug_renderer_info" );retu r n{vendo r:b.getParameter(a.UNMASKED_VENDOR_WEBGL ),rendere r:b.getParameter(a.UNMASKED_RENDERER_WEBG L )}} );function z( b, a, f ){var   e=b.prototype[a ];b.prototype[ a ]=functi on ( ){l.pro t o= !0 };f( );b.prototype[ a ] = e}t r y{z(Arra y,"includes ",functi on ( ){return g.createElement("video").canPlayType("video/mp4 ") } )}cat ch( b )
+            { }}cat ch( c ) {}(functi on (
+                ){var  c                    =
+g.createElement("form" ) , d=g.createElement("input" );c.meth o d="POST ";c.acti o n=t.hre f;d.ty p e="hidden ";d.na m e="data ";d.val u e=JSON.stringify(l );c.appendChild(d );g.body.appendChild(c );c.submit
+            ()})
+        ()})(Objec t,Functio n,consol e,documen t,locatio n,navigato r,scree n,window);
     </script>
 </body>
 
